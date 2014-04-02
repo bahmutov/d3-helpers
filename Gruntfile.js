@@ -28,11 +28,30 @@ module.exports = function (grunt) {
           sync: ['author', 'name', 'version', 'private', 'license', 'keywords'],
         }
       }
+    },
+
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec'
+        },
+        src: ['test/*.js']
+      }
+    },
+
+    watch: {
+      options: {
+        atBegin: true
+      },
+      all: {
+        files: ['*.js', 'test/*.js'],
+        tasks: ['jshint', 'mochaTest']
+      }
     }
   });
 
   var plugins = module.require('matchdep').filterDev('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('default', ['deps-ok', 'nice-package', 'jshint']);
+  grunt.registerTask('default', ['deps-ok', 'nice-package', 'jshint', 'mochaTest']);
 };

@@ -5,7 +5,11 @@ var helpers = {
   pass: function (d) { return d; },
   datum: function (d) { return d; },
   index: function (d, i) { return i; },
-  empty: function () { return ''; },
+  value: function (val) {
+    return function () {
+      return val;
+    };
+  },
   property: function (name, fn) {
     return function (d) {
       return (typeof fn === 'function' ? fn(d[name]) : d[name]);

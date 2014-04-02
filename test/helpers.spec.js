@@ -50,10 +50,13 @@ describe('d3 helpers', function () {
     });
   });
 
-  describe('empty', function () {
-    it('returns empty string', function () {
-      expect(helpers.empty()).to.be.a('string');
-      expect(helpers.empty()).to.equal('');
+  describe('value', function () {
+    it('can return empty string', function () {
+      var fn = helpers.value('');
+      expect(fn).to.be.a('function');
+
+      expect(fn()).to.be.a('string');
+      expect(fn()).to.equal('');
     });
   });
 

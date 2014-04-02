@@ -24,13 +24,14 @@ noop does nothing
 pass returns first argument
 property(name) returns function returning d[name]
 property(name, fn) wraps returned value in fn(), for example to convert
-  helpers('age', Number)
+  helpers.property('age', Number)
 
 yes always returns true
 no always returns false
 datum returns first arg, usually d in (d, i)
 index returns second arg, usually i in (d, i)
-empty returns ''
+value(val) returns a function that always returns val
+  helpers.value('')() returns ''
 ```
 
 ### Small print
