@@ -1,49 +1,27 @@
-# console.table
+# d3-helpers
 
-> Adds console.table method for convenience
+> Little utility D3 functions
 
-[![NPM][console.table-icon] ][console.table-url]
+[![NPM][d3-helpers-icon] ][d3-helpers-url]
 
-[![Build status][console.table-ci-image] ][console.table-ci-url]
-[![dependencies][console.table-dependencies-image] ][console.table-dependencies-url]
-[![devdependencies][console.table-devdependencies-image] ][console.table-devdependencies-url]
+[![Build status][d3-helpers-ci-image] ][d3-helpers-ci-url]
+[![dependencies][d3-helpers-dependencies-image] ][d3-helpers-dependencies-url]
+[![devdependencies][d3-helpers-devdependencies-image] ][d3-helpers-devdependencies-url]
 
-Install:
-
-```
-npm install console.table --save
-bower install console.table --save
-```
-
-Use in Node:
+Install and use under Node:
 
 ```
-// call once somewhere in the beginning
-require('console.table');
-console.table(console.table([{name: 'foo'}, {name: 'bar'}]););
-// prints
-name
-----
-foo
-bar
+npm install d3-helpers --save
+var helpers = require('d3-helpers');
 ```
 
-You can pass multiple strigs, arrays to single console.table
-Each argument will be formatted and printed separately on new line
+## Api
 
-Use in browser: **INCOMPLETE, PROBABLY CHROME ONLY FOR NOW**
+Helpers object is a colleciton of tiny functions:
 
-```html
-<script src="bower_components/console.table/dist/console.table.js"></script>
-<script>
-console.table([{name: 'foo'}, {name: 'bar'}]);
-</script>
+```js
+helpers.noop
 ```
-
-## Details
-
-Uses [easy-table](https://www.npmjs.org/package/easy-table) for printing
-to console.log
 
 ### Small print
 
@@ -58,7 +36,7 @@ License: MIT - do anything with the code, but don't blame me if it does not work
 Spread the word: tweet, star on github, etc.
 
 Support: if you find any problems with this module, email / tweet /
-[open issue](https://github.com/bahmutov/console.table/issues) on Github
+[open issue](https://github.com/bahmutov/d3-helpers/issues) on Github
 
 ## MIT License
 
@@ -85,11 +63,11 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-[console.table-icon]: https://nodei.co/npm/console.table.png?downloads=true
-[console.table-url]: https://npmjs.org/package/console.table
-[console.table-ci-image]: https://travis-ci.org/bahmutov/console.table.png?branch=master
-[console.table-ci-url]: https://travis-ci.org/bahmutov/console.table
-[console.table-dependencies-image]: https://david-dm.org/bahmutov/console.table.png
-[console.table-dependencies-url]: https://david-dm.org/bahmutov/console.table
-[console.table-devdependencies-image]: https://david-dm.org/bahmutov/console.table/dev-status.png
-[console.table-devdependencies-url]: https://david-dm.org/bahmutov/console.table#info=devDependencies
+[d3-helpers-icon]: https://nodei.co/npm/d3-helpers.png?downloads=true
+[d3-helpers-url]: https://npmjs.org/package/d3-helpers
+[d3-helpers-ci-image]: https://travis-ci.org/bahmutov/d3-helpers.png?branch=master
+[d3-helpers-ci-url]: https://travis-ci.org/bahmutov/d3-helpers
+[d3-helpers-dependencies-image]: https://david-dm.org/bahmutov/d3-helpers.png
+[d3-helpers-dependencies-url]: https://david-dm.org/bahmutov/d3-helpers
+[d3-helpers-devdependencies-image]: https://david-dm.org/bahmutov/d3-helpers/dev-status.png
+[d3-helpers-devdependencies-url]: https://david-dm.org/bahmutov/d3-helpers#info=devDependencies
