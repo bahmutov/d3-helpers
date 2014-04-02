@@ -3,33 +3,32 @@ var expect = require('expect.js');
 var assert = require('better-assert');
 // var sinon = require('sinon');
 
-// jshint -W030
 describe('d3 helpers', function () {
   it('is a collection of functions', function () {
     assert(helpers);
-    expect(helpers).to.be.object;
+    expect(helpers).to.be.an('object');
   });
 
   describe('noop', function () {
     it('is a function', function () {
-      expect(helpers.noop).to.be.function;
+      expect(helpers.noop).to.be.a('function');
     });
 
     it('expect nothing, returns nothing', function () {
       expect(helpers.noop.length).to.equal(0);
-      expect(helpers.noop()).to.be.undefined;
+      expect(helpers.noop()).to.be(undefined);
     });
   });
 
   describe('yes and no', function () {
     it('yes always returns true', function () {
-      expect(helpers.yes()).to.be.true;
-      expect(helpers.yes(false)).to.be.true;
+      expect(helpers.yes()).to.be(true);
+      expect(helpers.yes(false)).to.be(true);
     });
 
     it('no always returns true', function () {
-      expect(helpers.no()).to.be.false;
-      expect(helpers.no(true)).to.be.false;
+      expect(helpers.no()).to.be(false);
+      expect(helpers.no(true)).to.be(false);
     });
   });
 
@@ -53,7 +52,7 @@ describe('d3 helpers', function () {
 
   describe('empty', function () {
     it('returns empty string', function () {
-      expect(helpers.empty()).to.be.string;
+      expect(helpers.empty()).to.be.a('string');
       expect(helpers.empty()).to.equal('');
     });
   });
@@ -65,7 +64,7 @@ describe('d3 helpers', function () {
         y: 20
       };
       var getX = helpers.property('x');
-      expect(getX).to.be.function;
+      expect(getX).to.be.a('function');
       expect(getX.length).to.equal(1);
       expect(getX(point)).to.equal(10);
 
@@ -79,7 +78,39 @@ describe('d3 helpers', function () {
         y: 20
       };
       var getZ = helpers.property('z');
-      expect(getZ(point)).to.be.undefined;
+      expect(getZ(point)).to.be(undefined);
+    });
+
+    it('runs optional function after access', function () {
+      var person = { age: '10' };
+      expect(helpers.property('age')(person)).to.be.a('string');
+      expect(helpers.property('age', Number)(person)).to.be.a('number');
+    });
+  });
+
+  describe('example with combined functions', function () {
+    var d3 = require('d3');
+
+    // notice age property is string,
+    // so we need to convert to number first
+    var people = [{
+      age: '10'
+    }, {
+      age: '20'
+    }, {
+      age: '5'
+    }];
+
+    it('can be done in complex way', function () {
+      var youngest = d3.min(people, function (d) { return +d.age; });
+      expect(youngest).to.be.a('number');
+      expect(youngest).to.equal(5);
+    });
+
+    it('can be done using helpers', function () {
+      var youngest = d3.min(people, helpers.property('age', Number));
+      expect(youngest).to.be.a('number');
+      expect(youngest).to.equal(5);
     });
   });
 });

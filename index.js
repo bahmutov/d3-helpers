@@ -6,9 +6,9 @@ var helpers = {
   datum: function (d) { return d; },
   index: function (d, i) { return i; },
   empty: function () { return ''; },
-  property: function (name) {
+  property: function (name, fn) {
     return function (d) {
-      return d[name];
+      return (typeof fn === 'function' ? fn(d[name]) : d[name]);
     };
   }
 };

@@ -23,6 +23,9 @@ Helpers object is a colleciton of tiny functions:
 noop does nothing
 pass returns first argument
 property(name) returns function returning d[name]
+property(name, fn) wraps returned value in fn(), for example to convert
+  helpers('age', Number)
+
 yes always returns true
 no always returns false
 datum returns first arg, usually d in (d, i)

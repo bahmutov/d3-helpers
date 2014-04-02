@@ -1,7 +1,7 @@
 {
   "name": "d3-helpers",
   "description": "Little utility D3 functions",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bugs": {
     "url": "https://github.com/bahmutov/d3-helpers/issues"
@@ -9,6 +9,7 @@
   "dependencies": {},
   "devDependencies": {
     "better-assert": "^1.0.0",
+    "d3": "^3.4.4",
     "expect.js": "^0.3.1",
     "grunt": "^0.4.4",
     "grunt-banner": "^0.2.2",
