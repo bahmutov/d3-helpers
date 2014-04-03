@@ -112,6 +112,8 @@ function (val) {
 }
 ```
 
+Value could be anything: number, string, undefined, even another function.
+
 ### d3h.newDate
 
 Same as `function (d) { return new Date(d); }` to get around
@@ -126,8 +128,6 @@ var line = d3.svg.line()
 var line = d3.svg.line()
   .x(d3h.property('date', d3h.newDate, x))
 ```
-
-Value could be anything: number, string, undefined, even another function.
 
 ### Small print
 
