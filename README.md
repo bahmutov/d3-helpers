@@ -15,6 +15,14 @@ npm install d3-helpers --save
 var helpers = require('d3-helpers');
 ```
 
+Install and use in browser using bower:
+
+```
+bower install d3-helpers
+<script src="bower_components/d3-helpers/index.js"></script>
+// attaches as window.d3h object
+```
+
 ## Api
 
 Helpers object is a colleciton of tiny functions:
