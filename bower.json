@@ -1,7 +1,7 @@
 {
   "name": "d3-helpers",
   "main": "index.js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/bahmutov/d3-helpers",
   "license": "MIT",
   "ignore": [
@@ -10,7 +10,6 @@
     "bower_components",
     "test",
     "tests",
-    "index.js",
     "Gruntfile.js",
     "package.json",
     "index.html"
