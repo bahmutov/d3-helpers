@@ -39,13 +39,22 @@ module.exports = function (grunt) {
       }
     },
 
+    'clean-console': {
+      all: {
+        options: {
+          url: ['index.html'],
+          timeout: 1
+        }
+      }
+    },
+
     watch: {
       options: {
         atBegin: true
       },
       all: {
         files: ['*.js', 'test/*.js'],
-        tasks: ['jshint', 'mochaTest']
+        tasks: ['jshint', 'test']
       }
     }
   });
@@ -53,5 +62,6 @@ module.exports = function (grunt) {
   var plugins = module.require('matchdep').filterDev('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('default', ['deps-ok', 'nice-package', 'jshint', 'mochaTest']);
+  grunt.registerTask('test', ['mochaTest', 'clean-console']);
+  grunt.registerTask('default', ['deps-ok', 'nice-package', 'jshint', 'test']);
 };
