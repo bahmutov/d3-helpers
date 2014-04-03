@@ -59,20 +59,36 @@ function property(name) {
     return obj[name];
   };
 }
-// if passed a function as second argument
-function property(name, fn) {
+// if passed function(s) as additional arguments
+function property(name, f, g, ...) {
   return function (obj) {
-    return fn(obj[name]);
+    return g(f(obj[name]));
   };
 }
 ```
 
-Useful to extract a property and convert, for example for D3 selections
+Logically, read this from left to right. First grab named property,
+then apply function *f*, then apply to the result *g*, etc.
+
+Useful to extract a property and convert type, for example for D3 selections
 
 ```js
-.width(d3h.property('age', Number))
-.text(d3h.property('date', Date))
 .text(d3h.property('name'))
+.width(d3h.property('age', Number))
+.text(d3h.property('date', String))
+```
+
+or scale property from datum
+
+```js
+var x = d3.time.scale(), y = d3.scale.linear();
+var line = d3.svg.line()
+  .x(function (d) { return x(d.date); })
+  .y(function (d) { return y(d.y); });
+// same using d3-helpers
+var line = d3.svg.line()
+  .x(d3h.property('date', Date, x))
+  .y(d3h.property('y', d))
 ```
 
 ### d3h.yes / no
