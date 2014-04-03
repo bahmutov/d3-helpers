@@ -27,20 +27,60 @@ bower install d3-helpers
 
 Helpers object is a colleciton of tiny functions:
 
-```js
-noop does nothing
-pass returns first argument
-property(name) returns function returning d[name]
-property(name, fn) wraps returned value in fn(), for example to convert
-  helpers.property('age', Number)
+### d3h.noop
 
-yes always returns true
-no always returns false
-datum returns first arg, usually d in (d, i)
-index returns second arg, usually i in (d, i)
-value(val) returns a function that always returns val
-  helpers.value('')() returns ''
+Same as `function () {}`
+
+### d3h.pass = d3.datum
+
+Same as `function (d) { return d; }`
+
+### d3h.property
+
+```js
+function property(name) {
+  return function (obj) {
+    return obj[name];
+  };
+}
+// if passed a function as second argument
+function property(name, fn) {
+  return function (obj) {
+    return fn(obj[name]);
+  };
+}
 ```
+
+Useful to extract a property and convert, for example for D3 selections
+
+```js
+.width(d3h.property('age', Number))
+.text(d3h.property('date', Date))
+.text(d3h.property('name'))
+```
+
+### d3h.yes / no
+
+*d3h.yes* function always returns `true`,
+*d3h.no* function always returns `false`.
+
+### d3h.index
+
+Same as `function (d, i) { return i; }`
+
+### d3h.value
+
+Same as
+
+```js
+function (val) {
+  return function () {
+    return val;
+  };
+}
+```
+
+Value could be anything: number, string, undefined, even another function.
 
 ### Small print
 
