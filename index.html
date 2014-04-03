@@ -8,7 +8,7 @@
   <body>
     <h1>d3-helpers</h1>
     <script>
-    if (typeof d3h !== 'object') {
+    if (typeof d3h === 'undefined') {
       throw new Error('Cannot find d3h object');
     }
     console.log('Found d3 helpers object');

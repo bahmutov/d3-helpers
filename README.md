@@ -25,7 +25,28 @@ bower install d3-helpers
 
 ## Api
 
-Helpers object is a colleciton of tiny functions:
+Helpers object is a function augmented by other tiny functions. First the *d3h* function itself
+
+### d3h
+
+Returns a function that can chain property access and function composition.
+
+`d3h('propertyName', fnToApply, 'anotherPropertyName', orAnotherFn, ...);`
+
+```js
+var foo = {
+  name: 'foo'
+};
+function concatSelf(x) { return x + x; }
+function add2(x) { return x + 2; }
+var f = d3h('name', concatSelf, 'length', add2);
+f(foo) // returns 8
+
+// f is the same as
+function (obj) {
+  return add2(concatSelf(obj.name).length);
+}
+```
 
 ### d3h.noop
 
@@ -36,7 +57,7 @@ Same as `function () {}`
 Same as `function () { return; }` if you need a function that
 always returns *undefined*.
 
-### d3h.pass = d3.datum
+### d3h.pass = d3.datum = d3.d
 
 Same as `function (d) { return d; }`
 

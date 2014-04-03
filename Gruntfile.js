@@ -54,7 +54,7 @@ module.exports = function (grunt) {
         atBegin: true
       },
       all: {
-        files: ['*.js', 'test/*.js'],
+        files: ['*.js', 'test/*.js', 'index.html'],
         tasks: ['jshint', 'test']
       }
     }

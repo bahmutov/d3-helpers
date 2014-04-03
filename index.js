@@ -36,7 +36,32 @@
       }
     };
 
-    return helpers;
+    function d3h() {
+      var args = Array.prototype.slice.call(arguments, 0);
+      if (args.length) {
+        var fns = args;
+        return function (d) {
+          fns.forEach(function (fn) {
+            if (typeof fn === 'string') {
+              d = d[fn];
+            } else if (typeof fn === 'function') {
+              d = fn(d);
+            } else {
+              throw new Error('Cannot apply ' + JSON.stringify(fn, null, 2) +
+                ' to value ' + d + ' not a property name or function');
+            }
+          });
+          return d;
+        };
+      }
+    }
+
+    for (var prop in helpers) {
+      if (helpers.hasOwnProperty(prop)) {
+        d3h[prop] = helpers[prop];
+      }
+    }
+    return d3h;
   }());
 
   if (typeof window === 'object') {

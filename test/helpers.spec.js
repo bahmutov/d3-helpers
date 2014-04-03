@@ -1,12 +1,44 @@
 var d3h = require('..');
 var expect = require('expect.js');
 var assert = require('better-assert');
-// var sinon = require('sinon');
 
 describe('d3h d3-helpers', function () {
+  function triple(x) { return 3 * x; }
+  function add2(x) { return x + 2; }
+
+  describe('d3h function itself', function () {
+    it('is a function', function () {
+      assert(d3h);
+      expect(d3h).to.be.a('function');
+    });
+
+    it('function composition by default', function () {
+      expect(d3h(triple, add2)(5)).to.equal(17);
+    });
+
+    it('can extract property and apply functions', function () {
+      var foo = {
+        age: '11'
+      };
+      expect(d3h('age', triple, add2)(foo)).to.equal(35);
+    });
+
+    it('can apply function and extract property', function () {
+      var foo = {
+        name: 'foo'
+      };
+      function concatSelf(x) { return x + x; }
+      expect(d3h('name', concatSelf, 'length', add2)(foo)).to.equal(8);
+
+      function explicit(obj) {
+        return add2(concatSelf(obj.name).length);
+      }
+      expect(explicit(foo)).to.equal(8);
+    });
+  });
+
   it('is a collection of functions', function () {
-    assert(d3h);
-    expect(d3h).to.be.an('object');
+    expect(Object.keys(d3h).length).to.be.above(3);
   });
 
   describe('noop', function () {
@@ -47,7 +79,6 @@ describe('d3h d3-helpers', function () {
     });
 
     it('works as this logic', function () {
-      function triple(x) { return 3 * x; }
       var fn = function (x) {
         return triple(x);
       };
@@ -152,8 +183,6 @@ describe('d3h d3-helpers', function () {
     }, {
       age: '5'
     }];
-    function triple(x) { return 3 * x; }
-    function add2(x) { return x + 2; }
     var youngest = d3.min(people,
       d3h.property('age', Number, triple, add2));
     expect(youngest).to.equal(17);
@@ -183,5 +212,7 @@ describe('d3h d3-helpers', function () {
     expect(d3h.newDate(d.date)).to.be.a(Date);
     var value = d3h.property('date', d3h.newDate)(d);
     expect(value).to.be.a(Date);
+
+    expect(d3h('date', d3h.newDate)(d)).to.be.a(Date);
   });
 });
