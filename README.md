@@ -12,7 +12,7 @@ Install and use under Node:
 
 ```
 npm install d3-helpers --save
-var helpers = require('d3-helpers');
+var d3h = require('d3-helpers');
 ```
 
 Install and use in browser using bower:
@@ -23,9 +23,41 @@ bower install d3-helpers
 // attaches as window.d3h object
 ```
 
+## Example
+
+D3 code before
+
+```js
+// x and y are scale functions
+var line = d3.svg.line()
+  .x(function (d) { return x(new Date(d.date)); })
+  .y(function (d) { return y(+d.y); });
+```
+
+This is very common D3 callback code. Here is the same code with callbacks refactored
+to use *d3-helpers*
+
+```js
+var line = d3.svg.line()
+  .x(d3h('date', d3h.newDate, x))
+  .y(d3h('y', Number, y));
+```
+
+Notice several benefits:
+
+1. The `.x` callback is easier to read from left to right:
+grab property *date*, then call *d3h.newDate* function on it, the call *x* function.
+No more inside out composition flow as in `x(new Date(d.date))`
+2. Mixing property names and functions to apply makes the author's intention clear.
+`+d.y` is always ambiguous: did the author forget to add something or was this the
+intention? Writing `d3h('y', Number, ...)` makes it explicit.
+3. By eliminating writing each callback function, we eliminate potential sources of errors.
+In addition, since every function passed as argument is external, they becoming testable.
+
 ## Api
 
-Helpers object is a function augmented by other tiny functions. First the *d3h* function itself
+**d3-helpers** is a [well-tested](test/helpers.spec.js) function
+augmented by other tiny functions. First the *d3h* function itself
 
 ### d3h
 
