@@ -87,8 +87,8 @@ var line = d3.svg.line()
   .y(function (d) { return y(d.y); });
 // same using d3-helpers
 var line = d3.svg.line()
-  .x(d3h.property('date', Date, x))
-  .y(d3h.property('y', d))
+  .x(d3h.property('date', x))
+  .y(d3h.property('y', y))
 ```
 
 ### d3h.yes / no
