@@ -25,7 +25,8 @@ module.exports = function (grunt) {
     sync: {
       all: {
         options: {
-          sync: ['author', 'name', 'version', 'private', 'license', 'keywords'],
+          sync: ['author', 'name', 'version',
+            'private', 'license', 'keywords', 'homepage'],
         }
       }
     },
@@ -63,5 +64,5 @@ module.exports = function (grunt) {
   plugins.forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('test', ['mochaTest', 'clean-console']);
-  grunt.registerTask('default', ['deps-ok', 'nice-package', 'jshint', 'test']);
+  grunt.registerTask('default', ['deps-ok', 'nice-package', 'sync', 'jshint', 'test']);
 };
