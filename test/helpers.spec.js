@@ -20,6 +20,13 @@ describe('d3 helpers', function () {
     });
   });
 
+  describe('undef', function () {
+    it('always returns undefined', function () {
+      expect(helpers.undef()).to.be(undefined);
+      expect(helpers.undef(true)).to.be(undefined);
+    });
+  });
+
   describe('yes and no', function () {
     it('yes always returns true', function () {
       expect(helpers.yes()).to.be(true);
@@ -37,6 +44,21 @@ describe('d3 helpers', function () {
       expect(helpers.pass(101)).to.be(101);
       var foo = {};
       expect(helpers.pass(foo)).to.be(foo);
+    });
+
+    it('works as this logic', function () {
+      function triple(x) { return 3 * x; }
+      var fn = function (x) {
+        return triple(x);
+      };
+      expect(fn(2)).to.equal(6);
+    });
+
+    it('can wrap returned value in given function', function () {
+      function triple(x) { return 3 * x; }
+      var fn = helpers.pass(triple);
+      expect(fn).to.be.a('function');
+      expect(fn(2)).to.equal(6);
     });
   });
 

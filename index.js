@@ -5,8 +5,12 @@
       noop: function () {},
       no: function () { return false; },
       yes: function () { return true; },
+      undef: function () { return; },
       pass: function (d) { return d; },
-      datum: function (d) { return d; },
+      datum: function () {
+        var args = Array.prototype.slice.call(arguments, 0);
+        return this.pass.apply(this, args);
+      },
       index: function (d, i) { return i; },
       value: function (val) {
         return function () {

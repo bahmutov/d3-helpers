@@ -31,9 +31,25 @@ Helpers object is a colleciton of tiny functions:
 
 Same as `function () {}`
 
+### d3h.undef
+
+Same as `function () { return; }` if you need a function that
+always returns *undefined*.
+
 ### d3h.pass = d3.datum
 
 Same as `function (d) { return d; }`
+
+You can pass a function as argument, then it works as a wrapped
+function for any value passed next. For example to scale by function
+*triple* we can replace
+
+```
+function triple(x) { return 3 * x; }
+.attr('left', function (d) { return triple(d); })
+// with
+.attr('left', d3h.pass(triple));
+```
 
 ### d3h.property
 
