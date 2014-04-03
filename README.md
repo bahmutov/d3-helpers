@@ -46,9 +46,9 @@ var line = d3.svg.line()
 Notice several benefits:
 
 1. The `.x` callback is easier to read from left to right:
-grab property *date*, then call *d3h.newDate* function on it, the call *x* function.
+grab property *date*, then call *d3h.newDate* function on it, then call *x* function.
 No more inside out composition flow as in `x(new Date(d.date))`
-2. Mixing property names and functions to apply makes the author's intention clear.
+2. Allowing only property names and functions to apply makes the author's intention clear.
 `+d.y` is always ambiguous: did the author forget to add something or was this the
 intention? Writing `d3h('y', Number, ...)` makes it explicit.
 3. By eliminating writing each callback function, we eliminate potential sources of errors.
