@@ -112,6 +112,21 @@ function (val) {
 }
 ```
 
+### d3h.newDate
+
+Same as `function (d) { return new Date(d); }` to get around
+the `new` keyword requirement in JavaScript for Dates. Useful
+for constructing Date instances inside *d3h.property*
+
+```js
+var x = d3.time.scale();
+var line = d3.svg.line()
+  .x(function (d) { return x(new Date(d.date)); })
+// same using d3-helpers
+var line = d3.svg.line()
+  .x(d3h.property('date', d3h.newDate, x))
+```
+
 Value could be anything: number, string, undefined, even another function.
 
 ### Small print

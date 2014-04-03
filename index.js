@@ -30,6 +30,9 @@
           });
           return value;
         };
+      },
+      newDate: function (d) {
+        return new Date(d);
       }
     };
 

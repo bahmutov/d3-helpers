@@ -174,4 +174,14 @@ describe('d3h d3-helpers', function () {
     expect(t0).to.be.above(0);
     expect(t0).to.be.below(1000);
   });
+
+  describe('newDate', function () {
+    var d = {
+      date: '2014/03/02'
+    };
+    expect(d.date).to.be.a('string');
+    expect(d3h.newDate(d.date)).to.be.a(Date);
+    var value = d3h.property('date', d3h.newDate)(d);
+    expect(value).to.be.a(Date);
+  });
 });
