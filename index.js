@@ -1,6 +1,6 @@
 (function () {
 
-  var helpers = (function () {
+  function assemble() {
     var helpers = {
       noop: function () {},
       no: function () { return false; },
@@ -62,15 +62,20 @@
       }
     }
     return d3h;
-  }());
-
-  if (typeof window === 'object') {
-    /* global window */
-    window.d3h = helpers;
-  } else if (typeof module === 'object') {
-    module.exports = helpers;
-  } else {
-    throw new Error('Do not know how to exports D3 helpers');
   }
+
+  function register(value, name) {
+    if (typeof window === 'object') {
+      /* global window */
+      window[name] = value;
+    } else if (typeof module === 'object') {
+      module.exports = value;
+    } else {
+      throw new Error('Do not know how to register ' + name);
+    }
+  }
+
+  var d3h = assemble();
+  register(d3h, 'd3h');
 
 }());
