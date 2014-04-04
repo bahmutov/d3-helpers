@@ -1,42 +1,8 @@
 (function () {
 
   function assemble() {
-    var helpers = {
-      noop: function () {},
-      no: function () { return false; },
-      yes: function () { return true; },
-      undef: function () { return; },
-      pass: function (d) { return d; },
-      datum: function () {
-        var args = Array.prototype.slice.call(arguments, 0);
-        return this.pass.apply(this, args);
-      },
-      d: function () {
-        var args = Array.prototype.slice.call(arguments, 0);
-        return this.pass.apply(this, args);
-      },
-      index: function (d, i) { return i; },
-      value: function (val) {
-        return function () {
-          return val;
-        };
-      },
-      property: function (name) {
-        var fns = Array.prototype.slice.call(arguments, 1);
-        return function (d) {
-          var value = d[name];
-          fns.forEach(function (fn) {
-            value = fn(value);
-          });
-          return value;
-        };
-      },
-      newDate: function (d) {
-        return new Date(d);
-      }
-    };
 
-    function d3h() {
+    function chain() {
       var args = Array.prototype.slice.call(arguments, 0);
       if (args.length) {
         var fns = args;
@@ -56,12 +22,69 @@
       }
     }
 
-    for (var prop in helpers) {
-      if (helpers.hasOwnProperty(prop)) {
-        d3h[prop] = helpers[prop];
+    var helpers = {
+      noop: function () {},
+      no: function () { return false; },
+      yes: function () { return true; },
+      undef: function () { return; },
+      pass: function (d) { return d; },
+      datum: function () {
+        var args = Array.prototype.slice.call(arguments, 0);
+        return this.pass.apply(this, args);
+      },
+      d: function () {
+        if (!arguments.length) { return this.pass; }
+
+        // var args = Array.prototype.slice.call(arguments, 0);
+        // return this.pass.apply(this, args);
+        var args = Array.prototype.slice.call(arguments, 0);
+        var prebuiltChain = chain.apply(null, args);
+        return function (d) {
+          return prebuiltChain(d);
+        };
+      },
+      index: function (d, i) { return i; },
+      value: function (val) {
+        return function () {
+          return val;
+        };
+      },
+      property: function (name) {
+        var fns = Array.prototype.slice.call(arguments, 1);
+        return function (d) {
+          var value = d[name];
+          fns.forEach(function (fn) {
+            value = fn(value);
+          });
+          return value;
+        };
+      },
+      newDate: function (d) {
+        return new Date(d);
+      },
+      i: function () {
+        if (!arguments.length) { return this.index; }
+
+        var args = Array.prototype.slice.call(arguments, 0);
+        var prebuiltChain = chain.apply(null, args);
+        return function (d, i) {
+          return prebuiltChain(i);
+        };
       }
+    };
+
+    function extend(destination, source) {
+      for (var prop in source) {
+        if (source.hasOwnProperty(prop)) {
+          destination[prop] = source[prop];
+        }
+      }
+      return destination;
     }
-    return d3h;
+
+    extend(chain, helpers);
+
+    return chain;
   }
 
   function register(value, name) {

@@ -103,10 +103,6 @@ describe('d3h d3-helpers', function () {
     });
   });
 
-  describe('d = datum = pass', function () {
-    expect(d3h.d('foo')).to.equal('foo');
-  });
-
   describe('value', function () {
     it('can return empty string', function () {
       var fn = d3h.value('');
@@ -214,5 +210,47 @@ describe('d3h d3-helpers', function () {
     expect(value).to.be.a(Date);
 
     expect(d3h('date', d3h.newDate)(d)).to.be.a(Date);
+  });
+
+  describe('d3h.d and d3h.i', function () {
+    it('has d and i functions', function () {
+      expect(d3h.d).to.be.a('function');
+      expect(d3h.i).to.be.a('function');
+    });
+
+    describe('d3h.i', function () {
+      it('chains on index', function () {
+        var fn = d3h.i('foo', 'length', triple);
+        expect(fn).to.be.a('function');
+        var data = { foo: 'super' };
+        expect(fn(null, data)).to.equal(15);
+      });
+
+      it('returns index without anything', function () {
+        expect(d3h.index(4, 5)).to.equal(5);
+
+        var fn = d3h.i();
+        expect(fn).to.be.a('function');
+        expect(fn(4, 5)).to.equal(5);
+      });
+    });
+
+    describe('d3h.d', function () {
+      it('returns d without anything', function () {
+        expect(d3h.datum(4, 5)).to.equal(4);
+
+        var fn = d3h.d();
+        expect(fn).to.be.a('function');
+        expect(fn(4, 5)).to.equal(4);
+      });
+
+      it('chains methods on d', function () {
+        var fn = d3h.d('foo', add2);
+        var data = {
+          foo: 'foo'
+        };
+        expect(fn(data)).to.equal('foo2');
+      });
+    });
   });
 });

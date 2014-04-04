@@ -59,7 +59,7 @@ In addition, since every function passed as argument is external, they becoming 
 **d3-helpers** is a [well-tested](test/helpers.spec.js) function
 augmented by other tiny functions. First the *d3h* function itself
 
-### d3h
+### d3h = d3h.d
 
 Returns a function that can chain property access and function composition.
 
@@ -80,6 +80,26 @@ function (obj) {
 }
 ```
 
+Use on `d` argument:
+
+```js
+  .x(d3h('length', xScale));
+  // d3h.d is an alias
+  .(d3h.d('length', xScale));
+```
+
+### d3h.i
+
+Same chaining as `d3h.d` but operates on the second argument, usually the index
+
+```js
+.y(d3h.i(yScale))
+// same as
+.y(function (d, i) {
+  return yScale(i);
+});
+```
+
 ### d3h.noop
 
 Same as `function () {}`
@@ -89,7 +109,7 @@ Same as `function () {}`
 Same as `function () { return; }` if you need a function that
 always returns *undefined*.
 
-### d3h.pass = d3.datum = d3.d
+### d3h.pass = d3.datum
 
 Same as `function (d) { return d; }`
 
