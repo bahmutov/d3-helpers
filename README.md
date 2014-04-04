@@ -100,6 +100,16 @@ Same chaining as `d3h.d` but operates on the second argument, usually the index
 });
 ```
 
+If you want to return the index element, you need to execute the function to create the callback
+
+```js
+.y(d3h.i())
+// same as
+.y(function (d, i) {
+  return i;
+});
+```
+
 ### d3h.noop
 
 Same as `function () {}`
