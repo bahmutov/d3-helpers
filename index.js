@@ -35,8 +35,6 @@
       d: function () {
         if (!arguments.length) { return this.pass; }
 
-        // var args = Array.prototype.slice.call(arguments, 0);
-        // return this.pass.apply(this, args);
         var args = Array.prototype.slice.call(arguments, 0);
         var prebuiltChain = chain.apply(null, args);
         return function (d) {
