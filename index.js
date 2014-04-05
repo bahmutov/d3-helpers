@@ -9,7 +9,11 @@
         return function (d) {
           fns.forEach(function (fn) {
             if (typeof fn === 'string') {
-              d = d[fn];
+              if (typeof d[fn] === 'function') {
+                d = d[fn].call(d, d);
+              } else {
+                d = d[fn];
+              }
             } else if (typeof fn === 'function') {
               d = fn(d);
             } else {

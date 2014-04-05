@@ -35,6 +35,25 @@ describe('d3h d3-helpers', function () {
       }
       expect(explicit(foo)).to.equal(8);
     });
+
+    it('can call functions', function () {
+      var data = {
+        name: function () {
+          return 'foo';
+        }
+      };
+      expect(d3h('name')(data)).to.equal('foo');
+    });
+
+    it('method, get property, execute function', function () {
+      var data = {
+        self: function () {
+          return this;
+        },
+        age: 10
+      };
+      expect(d3h('self', 'age', add2)(data)).to.equal(12);
+    });
   });
 
   it('is a collection of functions', function () {

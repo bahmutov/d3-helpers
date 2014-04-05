@@ -35,7 +35,7 @@ var line = d3.svg.line()
 ```
 
 This is very common D3 callback code. Here is the same code with callbacks refactored
-to use *d3-helpers*
+with *d3-helpers*
 
 ```js
 var line = d3.svg.line()
@@ -63,20 +63,21 @@ augmented by other tiny functions. First the *d3h* function itself
 
 Returns a function that can chain property access and function composition.
 
-`d3h('propertyName', fnToApply, 'anotherPropertyName', orAnotherFn, ...);`
+`d3h('propertyName', fnToApply, 'method name to call', 'anotherPropertyName', orAnotherFn, ...);`
 
 ```js
 var foo = {
+  getName: function() { return this.name; },
   name: 'foo'
 };
 function concatSelf(x) { return x + x; }
 function add2(x) { return x + 2; }
-var f = d3h('name', concatSelf, 'length', add2);
+var f = d3h('getName', concatSelf, 'length', add2);
 f(foo) // returns 8
 
 // f is the same as
 function (obj) {
-  return add2(concatSelf(obj.name).length);
+  return add2(concatSelf(obj.getName()).length);
 }
 ```
 
@@ -87,6 +88,9 @@ Use on `d` argument:
   // d3h.d is an alias
   .(d3h.d('length', xScale));
 ```
+
+When calling a method on the object, `this` is bound to the
+object, and it is passed itself as first argument.
 
 ### d3h.i
 
