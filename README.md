@@ -5,6 +5,7 @@
 [![NPM][d3-helpers-icon] ][d3-helpers-url]
 
 [![Build status][d3-helpers-ci-image] ][d3-helpers-ci-url]
+[![Coverage Status][d3-helpers-coverage-image]][d3-helpers-coverage-url]
 [![dependencies][d3-helpers-dependencies-image] ][d3-helpers-dependencies-url]
 [![devdependencies][d3-helpers-devdependencies-image] ][d3-helpers-devdependencies-url]
 
@@ -260,6 +261,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 [d3-helpers-url]: https://npmjs.org/package/d3-helpers
 [d3-helpers-ci-image]: https://travis-ci.org/bahmutov/d3-helpers.png?branch=master
 [d3-helpers-ci-url]: https://travis-ci.org/bahmutov/d3-helpers
+[d3-helpers-coverage-image]: https://coveralls.io/repos/bahmutov/d3-helpers/badge.png
+[d3-helpers-coverage-url]: https://coveralls.io/r/bahmutov/d3-helpers
 [d3-helpers-dependencies-image]: https://david-dm.org/bahmutov/d3-helpers.png
 [d3-helpers-dependencies-url]: https://david-dm.org/bahmutov/d3-helpers
 [d3-helpers-devdependencies-image]: https://david-dm.org/bahmutov/d3-helpers/dev-status.png
