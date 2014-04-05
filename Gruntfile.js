@@ -49,6 +49,16 @@ module.exports = function (grunt) {
       }
     },
 
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js',
+        background: false,
+        singleRun: true,
+        logLevel: 'INFO',
+        browsers: ['PhantomJS']
+      }
+    },
+
     watch: {
       options: {
         atBegin: true
@@ -63,6 +73,6 @@ module.exports = function (grunt) {
   var plugins = module.require('matchdep').filterDev('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('test', ['mochaTest', 'clean-console']);
+  grunt.registerTask('test', ['mochaTest', 'karma', 'clean-console']);
   grunt.registerTask('default', ['deps-ok', 'nice-package', 'sync', 'jshint', 'test']);
 };

@@ -24,20 +24,27 @@
     "grunt-nice-package": "^0.3.0",
     "grunt-npm2bower-sync": "^0.3.0",
     "jshint-stylish": "^0.1.5",
+    "karma": "^0.12.3",
+    "karma-coverage": "^0.2.1",
+    "karma-mocha": "^0.1.3",
+    "karma-phantomjs-launcher": "^0.1.4",
     "matchdep": "^0.3.0",
     "mocha": "^1.18.2",
     "pre-git": "0.0.15",
     "sinon": "^1.9.0",
-    "time-grunt": "^0.3.1"
+    "time-grunt": "^0.3.1",
+    "grunt-karma": "^0.8.2"
   },
   "engines": {
     "node": "> 0.8"
   },
   "homepage": "https://github.com/bahmutov/d3-helpers",
   "keywords": [
-    "console",
-    "html",
-    "beautify",
+    "D3",
+    "helpers",
+    "utility",
+    "functional",
+    "callbacks",
     "node",
     "browser"
   ],
@@ -56,4 +63,3 @@
     "watch": "node node_modules/mocha/bin/mocha -R spec --watch"
   }
 }
-

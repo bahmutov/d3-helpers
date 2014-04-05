@@ -1,6 +1,12 @@
-var d3h = require('..');
-var expect = require('expect.js');
-var assert = require('better-assert');
+if (typeof d3 === 'undefined') {
+  var d3 = require('d3');
+}
+if (typeof d3h === 'undefined') {
+  var d3h = require('..');
+}
+if (typeof expect === 'undefined') {
+  var expect = require('expect.js');
+}
 
 describe('d3h d3-helpers', function () {
   function triple(x) { return 3 * x; }
@@ -8,7 +14,7 @@ describe('d3h d3-helpers', function () {
 
   describe('d3h function itself', function () {
     it('is a function', function () {
-      assert(d3h);
+      expect(d3h).not.to.be(undefined);
       expect(d3h).to.be.a('function');
     });
 
@@ -164,8 +170,6 @@ describe('d3h d3-helpers', function () {
   });
 
   describe('example with combined functions', function () {
-    var d3 = require('d3');
-
     // notice age property is string,
     // so we need to convert to number first
     var people = [{
@@ -190,7 +194,6 @@ describe('d3h d3-helpers', function () {
   });
 
   describe('property with function composition', function () {
-    var d3 = require('d3');
     var people = [{
       age: '10'
     }, {
@@ -204,7 +207,6 @@ describe('d3h d3-helpers', function () {
   });
 
   describe('parse date', function () {
-    var d3 = require('d3');
     var d = {
       date: new Date('2014/03/02')
     };

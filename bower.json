@@ -16,9 +16,11 @@
   ],
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "keywords": [
-    "console",
-    "html",
-    "beautify",
+    "D3",
+    "helpers",
+    "utility",
+    "functional",
+    "callbacks",
     "node",
     "browser"
   ]
