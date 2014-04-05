@@ -8,7 +8,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "better-assert": "^1.0.0",
+    "coveralls": "^2.10.0",
     "d3": "^3.4.4",
     "expect.js": "^0.3.1",
     "grunt": "^0.4.4",
@@ -20,6 +20,7 @@
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-deps-ok": "^0.1.8",
+    "grunt-karma": "^0.8.2",
     "grunt-mocha-test": "^0.10.0",
     "grunt-nice-package": "^0.3.0",
     "grunt-npm2bower-sync": "^0.3.0",
@@ -32,8 +33,7 @@
     "mocha": "^1.18.2",
     "pre-git": "0.0.15",
     "sinon": "^1.9.0",
-    "time-grunt": "^0.3.1",
-    "grunt-karma": "^0.8.2"
+    "time-grunt": "^0.3.1"
   },
   "engines": {
     "node": "> 0.8"
@@ -58,8 +58,9 @@
     "url": "git@github.com:bahmutov/d3-helpers.git"
   },
   "scripts": {
-    "test": "grunt && npm run unit",
-    "unit": "node node_modules/mocha/bin/mocha -R spec",
-    "watch": "node node_modules/mocha/bin/mocha -R spec --watch"
+    "test": "grunt test",
+    "watch": "grunt watch",
+    "coveralls": "cat coverage/PhantomJS*/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   }
 }
+
