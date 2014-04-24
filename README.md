@@ -9,21 +9,6 @@
 [![dependencies][d3-helpers-dependencies-image] ][d3-helpers-dependencies-url]
 [![devdependencies][d3-helpers-devdependencies-image] ][d3-helpers-devdependencies-url]
 
-Install and use under Node:
-
-```
-npm install d3-helpers --save
-var d3h = require('d3-helpers');
-```
-
-Install and use in browser using bower:
-
-```
-bower install d3-helpers
-<script src="bower_components/d3-helpers/index.js"></script>
-// attaches as window.d3h object
-```
-
 ## Example
 
 D3 code before
@@ -54,6 +39,23 @@ No more inside out composition flow as in `x(new Date(d.date))`
 intention? Writing `d3h('y', Number, ...)` makes it explicit.
 3. By eliminating writing each callback function, we eliminate potential sources of errors.
 In addition, since every function passed as argument is external, they becoming testable.
+
+## Install
+
+Node:
+
+```
+npm install d3-helpers --save
+var d3h = require('d3-helpers');
+```
+
+Browser:
+
+```
+bower install d3-helpers
+<script src="bower_components/d3-helpers/index.js"></script>
+// attaches as window.d3h object
+```
 
 ## Api
 
