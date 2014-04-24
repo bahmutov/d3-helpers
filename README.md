@@ -57,6 +57,20 @@ In addition, since every function passed as argument is external, they becoming 
 
 ## Api
 
+```
+// index
+d3h (alias d3h.d)
+d3h.i
+d3h.noop
+d3h.undef
+d3h.pass (alias d3.datum)
+d3h.property
+d3h.yes / no
+d3h.index
+d3h.value
+d3h.newDate
+```
+
 **d3-helpers** is a [well-tested](test/helpers.spec.js) function
 augmented by other tiny functions. First the *d3h* function itself
 
