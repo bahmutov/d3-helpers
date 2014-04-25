@@ -233,6 +233,13 @@ var line = d3.svg.line()
   .x(d3h.property('date', d3h.newDate, x))
 ```
 
+## Related
+
+I have another tiny library with single exported function called
+[functional-pipeline](https://github.com/bahmutov/functional-pipeline).
+It is very similar to *d3h* function for building a left to right
+pipelines, but has better debug mode.
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2014
