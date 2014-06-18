@@ -22,7 +22,7 @@
     "grunt-deps-ok": "^0.1.8",
     "grunt-karma": "^0.8.2",
     "grunt-mocha-test": "^0.10.0",
-    "grunt-nice-package": "^0.3.0",
+    "grunt-nice-package": "~0.5.2",
     "grunt-npm2bower-sync": "^0.3.0",
     "jshint-stylish": "^0.1.5",
     "karma": "^0.12.3",
@@ -63,4 +63,3 @@
     "coveralls": "cat coverage/PhantomJS*/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   }
 }
-
