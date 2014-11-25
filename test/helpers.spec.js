@@ -7,6 +7,9 @@ if (typeof d3h === 'undefined') {
 if (typeof expect === 'undefined') {
   var expect = require('expect.js');
 }
+if(typeof _ === 'undefined') {
+  var _ = require('lodash');
+}
 
 describe('d3h d3-helpers', function () {
   function triple(x) { return 3 * x; }
@@ -231,6 +234,38 @@ describe('d3h d3-helpers', function () {
     expect(value).to.be.a(Date);
 
     expect(d3h('date', d3h.newDate)(d)).to.be.a(Date);
+  });
+
+  describe('d3h.hermit', function () {
+    function failIfArguments() {
+      if (arguments.length) {
+        throw new Error('I cannot handle arguments');
+      }
+      return 42;
+    }
+
+    it('passes if there are no arguments', function () {
+      expect(failIfArguments()).to.equal(42);
+    });
+
+    it('fails if there are arguments', function () {
+      expect(function () {
+        failIfArguments(10);
+      }).to.throwError();
+    });
+
+    it('fails if partially applied', function () {
+      var one = _.partial(failIfArguments, 10);
+      expect(function () {
+        one();
+      }).to.throwError();
+    });
+
+    it('wraps a function', function () {
+      var one = d3h.hermit(failIfArguments);
+      expect(one).to.be.a('function');
+      expect(one(10)).to.equal(42);
+    });
   });
 
   describe('d3h.d and d3h.i', function () {

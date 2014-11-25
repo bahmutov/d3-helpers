@@ -71,6 +71,7 @@ d3h.yes / no
 d3h.index
 d3h.value
 d3h.newDate
+d3h.hermit
 ```
 
 **d3-helpers** is a [well-tested](test/helpers.spec.js) function
@@ -231,6 +232,21 @@ var line = d3.svg.line()
 // same using d3-helpers
 var line = d3.svg.line()
   .x(d3h.property('date', d3h.newDate, x))
+```
+
+### d3h.hermit
+
+Wraps a function that should not receive any arguments. Returned function just
+calls the original without any arguments.
+
+```js
+function failIfArguments() {
+  if (arguments.length) {
+    throw new Error('I cannot handle arguments');
+  }
+  return 42;
+}
+d3h.hermit(failIfArguments)(100); // 42
 ```
 
 ## Related

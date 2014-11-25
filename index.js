@@ -32,6 +32,11 @@
       yes: function () { return true; },
       undef: function () { return; },
       pass: function (d) { return d; },
+      hermit: function (fn) {
+        return function () {
+          return fn();
+        };
+      },
       datum: function () {
         var args = Array.prototype.slice.call(arguments, 0);
         return this.pass.apply(this, args);

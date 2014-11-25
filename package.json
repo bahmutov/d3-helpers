@@ -1,7 +1,7 @@
 {
   "name": "d3-helpers",
   "description": "Little utility D3 functions",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bugs": {
     "url": "https://github.com/bahmutov/d3-helpers/issues"
@@ -29,6 +29,7 @@
     "karma-coverage": "0.2.6",
     "karma-mocha": "0.1.9",
     "karma-phantomjs-launcher": "0.1.4",
+    "lodash": "2.4.1",
     "matchdep": "0.3.0",
     "mocha": "2.0.1",
     "pre-git": "0.1.1",
